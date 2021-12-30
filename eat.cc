@@ -20,8 +20,7 @@ int main(int argc, const char *argv[]) {
             array[a] = new char[size];
             memset(array[a], 0, size);
         }
-        for (size_t a = 0; a < n; a++)
-            delete[] array[a];
+        for (size_t a = 0; a < n; a++) delete[] array[a];
         delete[] array;
         return 0;
     } catch (std::bad_alloc &ba) {
