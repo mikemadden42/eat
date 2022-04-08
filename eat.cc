@@ -3,7 +3,7 @@
 #include <iostream>
 
 int main(int argc, const char *argv[]) {
-    int size_gb = 0;
+    int size_gb;
     if (argc != 2) {
         std::cout << "Usage: " << argv[0] << " size" << std::endl;
         exit(1);
