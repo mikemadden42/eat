@@ -3,12 +3,16 @@
 #include <iostream>
 
 int main(int argc, const char *argv[]) {
-    int size_gb;
+    size_t size_gb;
     if (argc != 2) {
         std::cout << "Usage: " << argv[0] << " size" << std::endl;
         exit(1);
     } else {
-        size_gb = atoi(argv[1]);
+        size_gb = strtol(argv[1], nullptr, 10);
+        if (size_gb == 0L) {
+            std::cout << "Cannot convert argument to number: " << argv[1] << std::endl;
+            exit(1);
+        }
     }
 
     try {
