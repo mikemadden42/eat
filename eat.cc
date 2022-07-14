@@ -10,13 +10,14 @@ int main(int argc, const char *argv[]) {
     } else {
         size_gb = strtol(argv[1], nullptr, 10);
         if (size_gb == 0L) {
-            std::cout << "Cannot convert argument to number: " << argv[1] << std::endl;
+            std::cout << "Cannot convert argument to number: " << argv[1]
+                      << std::endl;
             exit(1);
         }
     }
 
     try {
-        std::cout << "Allocating " << size_gb << " GB" << std::endl;
+        std::cout << "Allocating " << size_gb << " GB..." << std::endl;
         const size_t n = size_gb * 1024;
         const size_t size = 1024 * 1024;
         char **array = new char *[n];
@@ -24,7 +25,11 @@ int main(int argc, const char *argv[]) {
             array[a] = new char[size];
             memset(array[a], 0, size);
         }
-        for (size_t a = 0; a < n; a++) delete[] array[a];
+
+        std::cout << "Freeing " << size_gb << " GB..." << std::endl;
+        for (size_t a = 0; a < n; a++) {
+            delete[] array[a];
+        }
         delete[] array;
         return 0;
     } catch (std::bad_alloc &ba) {
