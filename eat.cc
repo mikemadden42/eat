@@ -8,7 +8,7 @@ int main(int argc, const char *argv[]) {
         std::cout << "Usage: " << argv[0] << " size" << std::endl;
         exit(1);
     } else {
-        size_gb = strtol(argv[1], nullptr, 10);
+        size_gb = std::strtol(argv[1], nullptr, 10);
         if (size_gb == 0L) {
             std::cout << "Cannot convert argument to number: " << argv[1]
                       << std::endl;
@@ -23,7 +23,7 @@ int main(int argc, const char *argv[]) {
         char **array = new char *[n];
         for (size_t a = 0; a < n; a++) {
             array[a] = new char[size];
-            memset(array[a], 0, size);
+            std::memset(array[a], 0, size);
         }
 
         std::cout << "Freeing " << size_gb << " GB..." << std::endl;
