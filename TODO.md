@@ -29,12 +29,12 @@ if (errno == ERANGE || end == argv[1] || *end != '\0' || v <= 0) {
 
 ## Build and CI
 
-- [ ] **Makefile:** use `CXX`/`CXXFLAGS` instead of `CC`/`CFLAGS`; use `$<` instead of `$@.cc`; make `clean` `rm -f` and `.PHONY`.
-- [ ] **`.gitignore`:** add the built `eat` binary.
-- [ ] **CMakeLists.txt:** replace `set(CMAKE_CXX_FLAGS ...)` with `target_compile_options(eat PRIVATE -Wall -Wextra -pedantic)`; add `set(CMAKE_CXX_STANDARD_REQUIRED ON)`.
+- [x] **Makefile:** use `CXX`/`CXXFLAGS` instead of `CC`/`CFLAGS`; use `$<` instead of `$@.cc`; make `clean` `rm -f` and `.PHONY`.
+- [x] **`.gitignore`:** add the built `eat` binary.
+- [x] **CMakeLists.txt:** replace `set(CMAKE_CXX_FLAGS ...)` with `target_compile_options(eat PRIVATE -Wall -Wextra -pedantic)`; add `set(CMAKE_CXX_STANDARD_REQUIRED ON)`.
 - [x] **CI tests:** `ctest` now runs a 1 GB smoke test and `WILL_FAIL` tests for invalid input.
-- [ ] **CI:** update `actions/checkout@v3` and remove the template comments.
+- [x] **CI:** update `actions/checkout@v3` (now v7) and remove the template comments.
 
 ## Docs
 
-- [ ] **README:** explain usage, that sizes are in GB, and that on Linux overcommit means the OOM killer usually ends the process instead of `bad_alloc`.
+- [x] **README:** explain usage, that sizes are in GB, and that on Linux overcommit means the OOM killer usually ends the process instead of `bad_alloc`.

@@ -37,3 +37,6 @@ release
 .idea/
 cmake-build-debug/
 cmake-build-release/
+
+# eat binary built by make
+/eat
