@@ -1,19 +1,32 @@
+#include <cerrno>
+#include <cstdint>
 #include <cstdlib>
 #include <cstring>
 #include <iostream>
 
 int main(int argc, const char *argv[]) {
-    size_t size_gb;
     if (argc != 2) {
-        std::cout << "Usage: " << argv[0] << " size" << std::endl;
-        exit(1);
-    } else {
-        size_gb = std::strtol(argv[1], nullptr, 10);
-        if (size_gb == 0L) {
-            std::cout << "Cannot convert argument to number: " << argv[1]
-                      << std::endl;
-            exit(1);
-        }
+        std::cerr << "Usage: " << argv[0] << " size" << std::endl;
+        return 1;
+    }
+
+    errno = 0;
+    char *end = nullptr;
+    const long long value = std::strtoll(argv[1], &end, 10);
+    if (errno == ERANGE || end == argv[1] || *end != '\0') {
+        std::cerr << "Cannot convert argument to number: " << argv[1]
+                  << std::endl;
+        return 1;
+    }
+    if (value <= 0) {
+        std::cerr << "Size must be greater than 0: " << argv[1] << std::endl;
+        return 1;
+    }
+
+    const size_t size_gb = static_cast<size_t>(value);
+    if (size_gb > SIZE_MAX / (1024ULL * 1024 * 1024)) {
+        std::cerr << "Size is too large: " << argv[1] << std::endl;
+        return 1;
     }
 
     try {
@@ -34,5 +47,6 @@ int main(int argc, const char *argv[]) {
         return 0;
     } catch (std::bad_alloc &ba) {
         std::cerr << "bad_alloc caught: " << ba.what() << std::endl;
+        return 1;
     }
 }
