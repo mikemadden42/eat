@@ -22,8 +22,8 @@ if (errno == ERANGE || end == argv[1] || *end != '\0' || v <= 0) {
 
 ## Smaller code issues
 
-- [ ] **The allocation could be optimized away.** C++14 and later let the compiler remove an unused `new`/`memset`/`delete` sequence. Make the memory observable, e.g. read a byte from each block into a `volatile` sink.
-- [ ] **The memory is freed straight away.** Add a `--hold`/sleep option or "press Enter to free" for memory pressure testing.
+- [x] **The allocation could be optimized away.** C++14 and later let the compiler remove an unused `new`/`memset`/`delete` sequence. Make the memory observable, e.g. read a byte from each block into a `volatile` sink.
+- [x] **The memory is freed straight away.** Added `--hold`, which waits for Enter before freeing.
 - [x] Usage and conversion errors go to `std::cout`; send them to `std::cerr`. Use `return 1` instead of `exit(1)` inside `main`.
 - [x] Initialize `size_gb` when declaring it, and remove the `else` after `exit`.
 
